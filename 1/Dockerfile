@@ -6,7 +6,7 @@ RUN apt-get update && apt-get -y --no-install-recommends install \
  && rm -rf /var/lib/apt/lists/*
 WORKDIR /build
 COPY checksum checksum
-ADD https://www.stklos.net/download/stklos-1.60.tar.gz stklos.tar.gz
+ADD https://www.stklos.net/download/stklos-1.70.tar.gz stklos.tar.gz
 RUN sha256sum stklos.tar.gz && sha256sum -c checksum
 RUN mkdir stklos && tar -C stklos --strip-components 1 -xf stklos.tar.gz
 WORKDIR /build/stklos

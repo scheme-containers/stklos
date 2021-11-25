@@ -1,5 +1,5 @@
 # -*- mode: dockerfile; coding: utf-8 -*-
-FROM debian:buster-slim AS build
+FROM debian:bullseye-slim AS build
 RUN apt-get update && apt-get -y --no-install-recommends install \
       build-essential file texinfo git ca-certificates \
       libffi-dev libgc-dev libgmp-dev libpcre3-dev \
@@ -12,9 +12,9 @@ RUN ./configure \
 RUN make
 RUN make install
 
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 RUN apt-get update && apt-get -y --no-install-recommends install \
-      libffi6 libgc1c2 libgmp10 libpcre3 libreadline7 \
+      libffi7 libgc1 libgmp10 libpcre3 libreadline8 \
  && rm -rf /var/lib/apt/lists/*
 COPY --from=build /usr/local/ /usr/local/
 COPY scheme-banner /usr/local/bin/scheme-banner
